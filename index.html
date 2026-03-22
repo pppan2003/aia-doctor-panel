@@ -234,8 +234,8 @@ tailwind.config = {
     <span style="font-size:11px;opacity:.7;font-weight:500;">網絡醫生搜尋</span>
   </div>
   <div style="display:flex;gap:8px;align-items:center;">
-    <button onclick="setViewM('map')" id="btnMapM" style="display:flex;align-items:center;gap:3px;background:rgba(255,255,255,.18);border:none;color:white;border-radius:999px;padding:5px 11px;font-size:11px;font-weight:700;cursor:pointer;">
-      <span class="material-symbols-outlined" style="font-size:14px;">map</span>地圖
+    <button onclick="toggleViewM()" id="btnToggleM" style="display:flex;align-items:center;gap:3px;background:rgba(255,255,255,.18);border:none;color:white;border-radius:999px;padding:5px 11px;font-size:11px;font-weight:700;cursor:pointer;">
+      <span class="material-symbols-outlined" style="font-size:14px;" id="btnToggleMIcon">map</span><span id="btnToggleMLabel">地圖</span>
     </button>
     <button onclick="openSheet()" style="display:flex;align-items:center;gap:4px;background:rgba(255,255,255,.15);border:none;color:white;border-radius:999px;padding:5px 12px;font-size:11px;font-weight:700;cursor:pointer;">
       <span class="material-symbols-outlined" style="font-size:15px;">tune</span>篩選
@@ -769,14 +769,21 @@ function setView(mode){
 }
 function setViewM(mode){
   mapMode=(mode==='map');
+  const icon=document.getElementById('btnToggleMIcon');
+  const label=document.getElementById('btnToggleMLabel');
   if(mapMode){
     document.body.classList.add('mapmode');
+    if(icon) icon.textContent='list';
+    if(label) label.textContent='列表';
     initMapM();
     renderMapMarkersM(filtered);
   } else {
     document.body.classList.remove('mapmode');
+    if(icon) icon.textContent='map';
+    if(label) label.textContent='地圖';
   }
 }
+function toggleViewM(){ setViewM(mapMode?'list':'map'); }
 
 function initMap(){
   if(leafletMap) return;
@@ -952,10 +959,6 @@ init();
         <p style="font-size:12px;color:#415660;margin-top:4px;">輸入姓名、專科或地區後<br>地圖將顯示診所位置</p>
       </div>
     </div>
-    <!-- Back to list -->
-    <button onclick="setViewM('list')" style="position:absolute;top:12px;right:12px;z-index:500;background:white;border:none;border-radius:999px;padding:6px 14px;font-size:12px;font-weight:700;color:#a80033;box-shadow:0 2px 8px rgba(0,0,0,.15);cursor:pointer;display:flex;align-items:center;gap:4px;">
-      <span class="material-symbols-outlined" style="font-size:14px;">list</span>列表
-    </button>
     <!-- Bottom sheet -->
     <div id="mapBottomSheet">
       <div style="padding:12px 16px 0;display:flex;align-items:center;gap:12px;">
