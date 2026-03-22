@@ -45,6 +45,9 @@ tailwind.config = {
   /* ── Sticky footer (desktop) ── */
   @media(min-width:768px){
     body{display:flex;flex-direction:column;min-height:100vh;}
+    /* width:100% prevents flex-column from shrinking sections that use margin:0 auto,
+       which would otherwise override align-self:stretch and collapse the grid to 2 cols */
+    section.desk-hero-section,main.desk-list-area,footer.desk-only{width:100%;box-sizing:border-box;}
     main.desk-list-area{flex:1;}
   }
 
