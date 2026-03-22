@@ -98,8 +98,10 @@ tailwind.config = {
 
   /* ── Map view ── */
   #deskMapWrap{display:none;flex-direction:row;height:calc(100vh - 60px);}
-  body.mapmode #deskMapWrap{display:flex;}
-  body.mapmode .desk-list-area{display:none!important;}
+  @media(min-width:768px){
+    body.mapmode #deskMapWrap{display:flex;}
+  }
+  @media(min-width:768px){ body.mapmode .desk-list-area{display:none!important;} }
   body.mapmode .desk-hero-section{padding-top:60px!important;}
   body.mapmode .desk-hero-section .bg-crimson{padding:12px 24px 52px!important;}
   body.mapmode .desk-hero-section h1{font-size:20px!important;margin-bottom:0!important;}
@@ -121,9 +123,12 @@ tailwind.config = {
   .view-btn{padding:5px 14px;border-radius:999px;border:none;font-size:12px;font-weight:600;cursor:pointer;font-family:Inter,sans-serif;transition:all .2s;color:#415660;background:transparent;}
   .view-btn.active{background:white;color:#a80033;box-shadow:0 1px 4px rgba(0,0,0,.12);}
   /* Mobile map */
-  #mobMapWrap{display:none;position:fixed;top:52px;left:0;right:0;bottom:0;z-index:5;}
-  body.mapmode #mobMapWrap{display:block;}
-  body.mapmode .mob-results-section{display:none!important;}
+  #mobMapWrap{display:none!important;}
+  @media(max-width:767px){
+    #mobMapWrap{display:none;}
+    body.mapmode #mobMapWrap{display:block!important;position:fixed;top:52px;left:0;right:0;bottom:0;z-index:5;}
+  }
+  @media(max-width:767px){ body.mapmode .mob-results-section{display:none!important;} }
   #leafletMapM{width:100%;height:100%;}
   #mapBottomSheet{position:absolute;bottom:0;left:0;right:0;max-height:45vh;background:white;border-radius:18px 18px 0 0;box-shadow:0 -4px 24px rgba(0,0,0,.15);overflow-y:auto;z-index:400;}
   #mapNeedFilterM{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(248,249,250,.88);z-index:200;text-align:center;}
