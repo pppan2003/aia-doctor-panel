@@ -42,6 +42,11 @@ tailwind.config = {
   .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;font-family:'Material Symbols Outlined';font-style:normal;display:inline-block;line-height:1;letter-spacing:normal;text-transform:none;white-space:nowrap;word-wrap:normal;}
   .fill-icon{font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;}
   body{font-family:'Inter',sans-serif;background:#f8f9fa;color:#191c1d;-webkit-tap-highlight-color:transparent;}
+  /* ── Sticky footer (desktop) ── */
+  @media(min-width:768px){
+    body{display:flex;flex-direction:column;min-height:100vh;}
+    main.desk-list-area{flex:1;}
+  }
 
   /* ── Product tags ── */
   .tag{display:inline-flex;align-items:center;font-size:10px;font-weight:700;letter-spacing:.4px;padding:2px 7px;border-radius:9999px;white-space:nowrap;}
